@@ -1,0 +1,597 @@
+
+/* make width and height easier to control */
+* {
+    box-sizing: border-box;
+}
+
+
+/* style of the whole page */
+body {
+    margin: 0;
+
+    min-height: 100vh;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    background:
+        linear-gradient(
+            to bottom,
+            #f8efe6,
+            #fdf8f3
+        );
+
+    color: #4f463f;
+}
+
+
+/* main box of the to-do list */
+.todo-app {
+    width: 92%;
+    max-width: 760px;
+
+    margin: 50px auto;
+
+    background-color: #fffaf3;
+
+    border-radius: 28px;
+
+    padding: 30px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(120, 100, 80, 0.12);
+
+    border: 1px solid #f1e2d6;
+}
+
+
+/* space under the header */
+.app-header {
+    margin-bottom: 24px;
+}
+
+
+/* put logo and text next to each other */
+.brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+/* style of the logo */
+.brand-logo {
+    width: 58px;
+    height: 58px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f1d7cf,
+            #dce9d2
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 26px;
+
+    font-weight: bold;
+
+    color: #5d6f57;
+
+    box-shadow:
+        0 6px 14px
+        rgba(0, 0, 0, 0.08);
+}
+
+
+/* main title */
+.brand-text h1 {
+    margin: 0;
+
+    font-size: 40px;
+
+    color: #4e4039;
+}
+
+
+/* small text above the title */
+.brand-mini {
+    margin: 0 0 4px;
+
+    font-size: 13px;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+    color: #9a8577;
+}
+
+
+/* subtitle under the header */
+.subtitle {
+    margin: 12px 0 0;
+
+    color: #8a7669;
+
+    font-size: 18px;
+}
+
+
+/* form with input and add button */
+.task-form {
+    display: flex;
+
+    gap: 12px;
+
+    margin-bottom: 12px;
+}
+
+
+/* input where the user writes the task */
+#taskInput {
+    flex: 1;
+
+    padding: 14px 16px;
+
+    border-radius: 16px;
+
+    border: 1px solid #dbc9bb;
+
+    background-color: #fffdfb;
+
+    font-size: 16px;
+
+    outline: none;
+
+    color: #4f463f;
+}
+
+
+/* input when selected */
+#taskInput:focus {
+    border-color: #cdaea0;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(229, 198, 183, 0.25);
+}
+
+
+/* add task button */
+.add-btn {
+    border: none;
+
+    border-radius: 16px;
+
+    padding: 14px 20px;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    background-color: #4f463f;
+
+    color: white;
+
+    transition: 0.2s;
+}
+
+
+/* add button hover */
+.add-btn:hover {
+    background-color: #3f3731;
+
+    transform: translateY(-1px);
+}
+
+
+
+/* validation or information message */
+#message {
+    min-height: 24px;
+
+    margin: 8px 4px 12px;
+
+    color: #c75f5f;
+
+    font-weight: 500;
+}
+
+
+
+/* statistics and clear button container */
+.task-summary {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 18px;
+
+    padding-bottom: 14px;
+
+    border-bottom: 1px solid #eee0d5;
+}
+
+
+/* task statistics */
+#taskStats {
+    margin: 0;
+
+    color: #8a7669;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+/* clear completed button */
+.clear-btn {
+    border: 1px solid #dbc9bb;
+
+    background-color: #fff8f2;
+
+    color: #7d685b;
+
+    padding: 9px 14px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+
+/* clear button hover */
+.clear-btn:hover:not(:disabled) {
+    background-color: #f7e9df;
+
+    transform: translateY(-1px);
+}
+
+
+/* button when no completed tasks exist */
+.clear-btn:disabled {
+    opacity: 0.5;
+
+    cursor: not-allowed;
+}
+
+
+
+
+/* remove default bullets */
+#taskList {
+    list-style: none;
+
+    padding: 0;
+
+    margin: 0;
+}
+
+
+/* shown when there are no tasks */
+.empty-state {
+    text-align: center;
+
+    padding: 30px;
+
+    background-color: #fbf3ea;
+
+    border: 1px dashed #e3cfc0;
+
+    border-radius: 18px;
+
+    color: #9b8577;
+
+    line-height: 1.7;
+}
+
+
+/* design of every task */
+.task-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 16px;
+
+    margin-bottom: 14px;
+
+    background-color: #fcf6ef;
+
+    border-radius: 18px;
+
+    border-left: 12px solid #f1d7cf;
+
+    box-shadow:
+        0 6px 14px
+        rgba(0, 0, 0, 0.04);
+
+    transition: 0.2s;
+}
+
+
+/* movement when mouse is over task */
+.task-item:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 18px
+        rgba(0, 0, 0, 0.06);
+}
+
+
+/* pinned task */
+.task-item.pinned {
+    border-left-color: #e7c678;
+}
+
+
+/* completed task */
+.task-item.done {
+    background-color: #eef5e8;
+
+    border-left-color: #bcd5a8;
+}
+
+.check-btn {
+    width: 28px;
+    height: 28px;
+
+    border-radius: 50%;
+
+    border: 2px solid #bda896;
+
+    background-color: transparent;
+
+    cursor: pointer;
+
+    flex-shrink: 0;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    color: #5d6f57;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition: 0.2s;
+}
+
+
+/* hover */
+.check-btn:hover {
+    background-color: #f0e9df;
+}
+
+
+/* completed check button */
+.task-item.done .check-btn {
+    background-color: #cfe2bf;
+
+    border-color: #9eb588;
+}
+
+
+.task-content {
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+/* task title */
+.task-title {
+    margin: 0;
+
+    font-size: 17px;
+
+    color: #4f463f;
+
+    word-break: break-word;
+}
+
+
+/* completed task title */
+.task-item.done .task-title {
+    text-decoration: line-through;
+
+    color: #7c8a73;
+}
+
+.task-info {
+    margin-top: 6px;
+
+    display: flex;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+}
+
+
+/* common badge style */
+.badge {
+    display: inline-block;
+
+    padding: 4px 10px;
+
+    border-radius: 999px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+/* completed badge */
+.badge-done {
+    background-color: #dceacb;
+
+    color: #5b7251;
+}
+
+
+/* pinned badge */
+.badge-pinned {
+    background-color: #f5dfd5;
+
+    color: #9b6a5d;
+}
+
+
+
+.task-actions {
+    display: flex;
+
+    gap: 8px;
+
+    flex-shrink: 0;
+}
+
+
+/* common button style */
+.icon-btn {
+    border: none;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    font-size: 18px;
+
+    transition: 0.2s;
+}
+
+
+/* hover */
+.icon-btn:hover {
+    transform: scale(1.07);
+}
+
+
+/* pin button */
+.pin-btn {
+    background-color: #f3ead0;
+}
+
+
+/* edit button */
+.edit-btn {
+    background-color: #dfe9f7;
+}
+
+
+/* delete button */
+.delete-btn {
+    background-color: #f7d7d5;
+}
+
+
+
+/* 
+   RESPONSIVE DESIGN
+ */
+
+
+@media (max-width: 650px) {
+
+    .todo-app {
+        width: 94%;
+
+        margin: 25px auto;
+
+        padding: 22px;
+    }
+
+
+    /* input and button under each other */
+    .task-form {
+        flex-direction: column;
+    }
+
+
+    /* full-width add button */
+    .add-btn {
+        width: 100%;
+    }
+
+
+    /* summary vertically */
+    .task-summary {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    #taskStats {
+        text-align: center;
+    }
+
+
+    .clear-btn {
+        width: 100%;
+    }
+
+
+    /* task can wrap */
+    .task-item {
+        align-items: flex-start;
+
+        flex-wrap: wrap;
+    }
+
+
+    /* actions appear on new line */
+    .task-actions {
+        width: 100%;
+
+        justify-content: flex-end;
+    }
+
+
+    /* smaller title */
+    .brand-text h1 {
+        font-size: 32px;
+    }
+
+
+    .brand-logo {
+        width: 52px;
+
+        height: 52px;
+    }
+}

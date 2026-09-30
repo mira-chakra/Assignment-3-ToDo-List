@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Makes the page responsive on phones and smaller screens -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>To-Do List</title>
+
+    <!-- Connect my HTML page to my CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+    <!-- Main container of my To-Do List -->
+    <main class="todo-app">
+
+
+        <!-- Header of the application -->
+        <header class="app-header">
+
+            <div class="brand">
+
+                <!-- Small logo -->
+                <div class="brand-logo">
+                    ✓
+                </div>
+
+
+                <!-- Application name -->
+                <div class="brand-text">
+
+                    <p class="brand-mini">
+                        plan • focus • finish
+                    </p>
+
+                    <h1>To-Do List</h1>
+
+                </div>
+
+            </div>
+
+
+            <p class="subtitle">
+                One step at a time.
+            </p>
+
+        </header>
+
+
+
+        <!--
+            I use a form so the user can add a task
+            by clicking the button or pressing Enter.
+        -->
+        <form id="taskForm" class="task-form">
+
+            <input
+                type="text"
+                id="taskInput"
+                placeholder="Write a new task..."
+                autocomplete="off"
+            >
+
+            <button
+                type="submit"
+                class="add-btn"
+            >
+                Add Task
+            </button>
+
+        </form>
+
+
+
+        <!--
+            I use this paragraph to display
+            validation messages.
+        -->
+        <p id="message"></p>
+
+
+
+        <!--
+            This section displays how many tasks are completed
+            and gives the user the option to remove them.
+        -->
+        <div class="task-summary">
+
+            <p id="taskStats">
+                0 of 0 done
+            </p>
+
+
+            <button
+                type="button"
+                id="clearCompleted"
+                class="clear-btn"
+            >
+                Clear Completed
+            </button>
+
+        </div>
+
+
+
+        <!--
+            I leave the list empty in HTML because
+            JavaScript will create all the tasks dynamically.
+        -->
+        <ul id="taskList"></ul>
+
+
+    </main>
+
+
+
+    <!--
+        I use one JavaScript file.
+        It is placed at the end so all HTML elements
+        already exist before JavaScript uses them.
+    -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
